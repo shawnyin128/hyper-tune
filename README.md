@@ -115,18 +115,6 @@ Controlled benchmark on synthetic MLP, CNN, and small Transformer tasks. The bas
 | CNN | 0.99 | 192 | 96 | 2.00x | 0.94s | 0.46s | 2.03x | 2 -> 1 |
 | Small Transformer | 0.89 | 4160 | 2464 | 1.69x | 37.55s | 24.66s | 1.52x | 26 -> 11 |
 
-This benchmark is intentionally small, but it tests the behavior the skill is meant to enforce: spend cheap probes first, avoid broad uninformed search, and reserve longer training for plausible candidates.
-
-## Suggested README Figures
-
-Use these figures depending on space:
-
-- `readme-search-cost.png`: best first figure. It directly shows fewer training steps to reach the same validation target.
-- `comparison.png`: detailed benchmark figure with steps, wall time, and trial count side by side.
-- `speedup.png`: compact secondary figure for step-reduction factors.
-
-## Caveats
-
-This benchmark demonstrates search-cost reduction against an uninformed broad search, not a universal GPU-saving guarantee. A stronger claim should include multiple seeds, harder real datasets, larger models, and stronger baselines such as ASHA/Optuna or expert-written recipes.
+This benchmark is intentionally small, but it tests the behavior the skill is meant to enforce: spend cheap probes first, avoid broad uninformed search, and reserve longer training for plausible candidates. It demonstrates search-cost reduction against a broad baseline, not a universal speedup guarantee.
 
 See `benchmark-results/report.md`, `benchmark-results/summary.csv`, and `benchmark-results/trials.csv` for the detailed run record.
