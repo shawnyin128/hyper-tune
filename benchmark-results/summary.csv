@@ -1,0 +1,7 @@
+model,strategy,target,hit_target,best_val_acc,total_steps,total_seconds,hit_at_trial,train_trials,all_trials
+mlp,naive,0.97,True,1.0,144,0.7548558570015302,2,2,2
+mlp,skill,0.97,True,1.0,48,0.1683085150016268,1,1,2
+cnn,naive,0.99,True,1.0,192,0.9354892299998028,2,2,2
+cnn,skill,0.99,True,1.0,96,0.46175179400052,1,1,2
+transformer,naive,0.89,True,0.8916015625,4160,37.54923247299848,26,26,26
+transformer,skill,0.89,True,0.8916015625,2464,24.664568099000462,11,11,15

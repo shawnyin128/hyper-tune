@@ -1,0 +1,4 @@
+interface:
+  display_name: "Hyper Tune"
+  short_description: "Lean workflow for tuning model training"
+  default_prompt: "Use $hyper-tune to diagnose this training run and propose the next hyperparameter sweep."
