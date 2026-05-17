@@ -4,6 +4,65 @@
 
 The core idea is simple: most bad runs can be rejected before they become expensive.
 
+## Quick Install
+
+This repository keeps the user-facing benchmark README separate from the skill package. The actual skill package contains only the files an agent needs at runtime:
+
+```text
+hyper-tune/
+├── SKILL.md
+├── references/
+│   └── initial-points.md
+└── agents/
+    └── openai.yaml
+```
+
+### Codex
+
+From the directory that contains the `hyper-tune/` skill folder, install it as a user-level Codex skill:
+
+```bash
+mkdir -p ~/.codex/skills
+cp -R hyper-tune ~/.codex/skills/hyper-tune
+```
+
+Then start a new Codex session and use `$hyper-tune`, or ask naturally for model training hyperparameter tuning, LR/WD sweep design, initial loss debugging, NaN diagnosis, overfit checks, optimizer selection, scheduler selection, or LoRA/fine-tuning starting points.
+
+### Claude Code
+
+Claude Code uses the same `SKILL.md` package shape, but a different user-level directory. From the directory that contains the `hyper-tune/` skill folder, run:
+
+```bash
+mkdir -p ~/.claude/skills
+cp -R hyper-tune ~/.claude/skills/hyper-tune
+```
+
+Invoke it directly in Claude Code with:
+
+```text
+/hyper-tune
+```
+
+Claude Code can also auto-load it from the `description` when the request is clearly about training hyperparameters or learning-curve diagnosis. If `~/.claude/skills` did not exist when the Claude Code session started, restart Claude Code once so it watches the new top-level skills directory.
+
+### Claude Code Project-Level Install
+
+For a repository-specific Claude Code install, copy the same folder into:
+
+```text
+<repo>/.claude/skills/hyper-tune
+```
+
+## When To Use It
+
+Use `hyper-tune` when you need to:
+
+- choose starting optimizer, LR, weight decay, scheduler, or warmup;
+- plan a low-budget LR/WD sweep;
+- diagnose initial loss, NaN, stagnant loss, overfitting, or underfitting;
+- review an existing training config;
+- choose fine-tuning or LoRA/QLoRA starting hyperparameters.
+
 ![Hyper Tune search cost reduction](assets/readme-search-cost.png)
 
 ## Tuning Workflow
@@ -58,55 +117,6 @@ Controlled benchmark on synthetic MLP, CNN, and small Transformer tasks. The bas
 
 This benchmark is intentionally small, but it tests the behavior the skill is meant to enforce: spend cheap probes first, avoid broad uninformed search, and reserve longer training for plausible candidates.
 
-## Install The Skill
-
-This repository keeps the user-facing benchmark README separate from the skill package. The actual skill package contains only the files an agent needs at runtime:
-
-```text
-hyper-tune/
-├── SKILL.md
-├── references/
-│   └── initial-points.md
-└── agents/
-    └── openai.yaml
-```
-
-### Codex
-
-From the directory that contains the `hyper-tune/` skill folder, install it as a user-level Codex skill:
-
-```bash
-mkdir -p ~/.codex/skills
-cp -R hyper-tune ~/.codex/skills/hyper-tune
-```
-
-Then start a new Codex session and use `$hyper-tune`, or ask naturally for model training hyperparameter tuning, LR/WD sweep design, initial loss debugging, NaN diagnosis, overfit checks, optimizer selection, scheduler selection, or LoRA/fine-tuning starting points.
-
-### Claude Code
-
-Claude Code uses the same `SKILL.md` package shape, but a different user-level directory. From the directory that contains the `hyper-tune/` skill folder, run:
-
-```bash
-mkdir -p ~/.claude/skills
-cp -R hyper-tune ~/.claude/skills/hyper-tune
-```
-
-Invoke it directly in Claude Code with:
-
-```text
-/hyper-tune
-```
-
-Claude Code can also auto-load it from the `description` when the request is clearly about training hyperparameters or learning-curve diagnosis. If `~/.claude/skills` did not exist when the Claude Code session started, restart Claude Code once so it watches the new top-level skills directory.
-
-### Claude Code Project-Level Install
-
-For a repository-specific Claude Code install, copy the same folder into:
-
-```text
-<repo>/.claude/skills/hyper-tune
-```
-
 ## Suggested README Figures
 
 Use these figures depending on space:
@@ -114,16 +124,6 @@ Use these figures depending on space:
 - `readme-search-cost.png`: best first figure. It directly shows fewer training steps to reach the same validation target.
 - `comparison.png`: detailed benchmark figure with steps, wall time, and trial count side by side.
 - `speedup.png`: compact secondary figure for step-reduction factors.
-
-## When To Use It
-
-Use `hyper-tune` when you need to:
-
-- choose starting optimizer, LR, weight decay, scheduler, or warmup;
-- plan a low-budget LR/WD sweep;
-- diagnose initial loss, NaN, stagnant loss, overfitting, or underfitting;
-- review an existing training config;
-- choose fine-tuning or LoRA/QLoRA starting hyperparameters.
 
 ## Caveats
 
